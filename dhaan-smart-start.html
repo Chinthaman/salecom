@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Smart Start Health Mix | Dhaan Foods</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0D1B3E;
+    --gold: #C8912A;
+    --gold-light: #F2C255;
+    --cream: #FDF6EC;
+    --white: #FFFFFF;
+    --earth: #5C3D1E;
+    --green: #2E6B3E;
+    --green-light: #4CAF70;
+    --text-dark: #1A1A1A;
+    --text-mid: #4A4A4A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 5%;
+    background: rgba(13,27,62,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,145,42,0.3);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: var(--navy); font-size: 18px;
+    font-family: 'Playfair Display', serif;
+  }
+  .nav-brand { color: var(--white); }
+  .nav-brand span:first-child { display: block; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 17px; letter-spacing: 0.5px; }
+  .nav-brand span:last-child { font-size: 10px; color: var(--gold-light); letter-spacing: 1.5px; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy);
+    padding: 9px 22px; border-radius: 50px;
+    font-weight: 700; font-size: 14px; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: scale(1.03); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, #1A2F5E 50%, #0D1B3E 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(200,145,42,0.15) 0%, transparent 60%);
+  }
+  /* Decorative circles */
+  .hero-circle1 {
+    position: absolute; width: 600px; height: 600px;
+    border-radius: 50%; border: 1px solid rgba(200,145,42,0.1);
+    top: -100px; right: -100px; animation: rotate 40s linear infinite;
+  }
+  .hero-circle2 {
+    position: absolute; width: 400px; height: 400px;
+    border-radius: 50%; border: 1px solid rgba(200,145,42,0.15);
+    bottom: -80px; left: -80px; animation: rotate 30s linear infinite reverse;
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .hero-content { position: relative; z-index: 2; flex: 1; max-width: 560px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200,145,42,0.15); border: 1px solid rgba(200,145,42,0.4);
+    color: var(--gold-light); padding: 7px 16px; border-radius: 50px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before { content: '✦'; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 6vw, 78px);
+    font-weight: 900; color: var(--white);
+    line-height: 1.05; margin-bottom: 12px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title em { color: var(--gold-light); font-style: normal; }
+  .hero-subtitle {
+    font-size: clamp(13px, 2vw, 16px); color: rgba(255,255,255,0.65);
+    line-height: 1.6; margin-bottom: 32px; max-width: 440px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-stats {
+    display: flex; gap: 28px; margin-bottom: 36px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .stat { border-left: 2px solid var(--gold); padding-left: 12px; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--gold-light); line-height: 1; }
+  .stat-label { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); padding: 14px 32px; border-radius: 50px;
+    font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(200,145,42,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,145,42,0.5); }
+  .btn-secondary {
+    background: transparent; color: var(--white);
+    padding: 14px 32px; border-radius: 50px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold-light); background: rgba(200,145,42,0.08); }
+
+  /* Hero product visual */
+  .hero-visual {
+    flex: 1; display: flex; justify-content: center; align-items: center;
+    position: relative; z-index: 2; animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-product-card {
+    background: linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    border: 1px solid rgba(200,145,42,0.25);
+    border-radius: 28px; padding: 36px 32px;
+    backdrop-filter: blur(10px);
+    text-align: center; max-width: 340px; width: 100%;
+    position: relative;
+  }
+  .protein-badge-hero {
+    position: absolute; top: -18px; right: -18px;
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), #E8A82A);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 4px 16px rgba(200,145,42,0.5);
+  }
+  .protein-badge-hero span:first-child { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--navy); line-height: 1; }
+  .protein-badge-hero span:last-child { font-size: 9px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 1px; }
+  .product-img-wrap {
+    width: 200px; height: 200px; margin: 0 auto 24px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(200,145,42,0.15), transparent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px; line-height: 1;
+  }
+  .product-name-hero { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; color: var(--white); }
+  .product-sub-hero { font-size: 13px; color: var(--gold-light); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+  .mini-benefits { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .mini-pill {
+    background: rgba(46,107,62,0.3); border: 1px solid rgba(76,175,112,0.4);
+    color: #7EDBA0; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 50px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── TRUST BAR ── */
+  .trust-bar {
+    background: var(--gold);
+    padding: 14px 5%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 40px; flex-wrap: wrap;
+    overflow: hidden;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; font-size: 13px; color: var(--navy);
+    text-transform: uppercase; letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .trust-item .icon { font-size: 16px; }
+  .trust-divider { color: var(--navy); opacity: 0.3; font-size: 20px; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 80px 5%; }
+  .section-tag {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 46px); font-weight: 900;
+    line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-desc { color: var(--text-mid); font-size: 16px; line-height: 1.7; max-width: 560px; }
+
+  /* ── ABOUT / STORY ── */
+  .about {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-main-card {
+    background: linear-gradient(145deg, var(--navy), #1A2F5E);
+    border-radius: 24px; padding: 40px;
+    color: var(--white); text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .about-main-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(200,145,42,0.2), transparent);
+  }
+  .about-emoji { font-size: 64px; margin-bottom: 16px; }
+  .about-card-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+  .about-card-text { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .floating-tag {
+    position: absolute; background: var(--gold);
+    border-radius: 14px; padding: 10px 16px;
+    font-weight: 700; font-size: 13px; color: var(--navy);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .floating-tag.top-right { top: -14px; right: -14px; }
+  .floating-tag.bottom-left { bottom: -14px; left: -14px; }
+  .about-text .section-title { color: var(--navy); }
+  .about-checklist { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .about-checklist li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15px; color: var(--text-mid); line-height: 1.5;
+  }
+  .check { width: 22px; height: 22px; min-width: 22px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; margin-top: 1px; }
+
+  /* ── BENEFITS ── */
+  .benefits { background: var(--navy); }
+  .benefits .section-title { color: var(--white); }
+  .benefits .section-desc { color: rgba(255,255,255,0.6); }
+  .benefits-header { text-align: center; margin-bottom: 56px; }
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .benefit-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,145,42,0.2);
+    border-radius: 20px; padding: 32px 24px; text-align: center;
+    transition: transform 0.25s, background 0.25s, border-color 0.25s;
+    cursor: default;
+  }
+  .benefit-card:hover { transform: translateY(-6px); background: rgba(200,145,42,0.08); border-color: var(--gold); }
+  .benefit-icon { font-size: 40px; margin-bottom: 14px; }
+  .benefit-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .benefit-text { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ── INGREDIENTS ── */
+  .ingredients { background: var(--cream); }
+  .ingredients-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .ingredients-list-wrap { }
+  .ing-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 90px; height: 90px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--navy);
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(200,145,42,0.35);
+  }
+  .ing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .ing-pill {
+    background: var(--white); border: 1px solid rgba(200,145,42,0.2);
+    border-radius: 12px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text-dark);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .ing-pill:hover { border-color: var(--gold); box-shadow: 0 2px 12px rgba(200,145,42,0.15); }
+  .ing-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .ingredients-card {
+    background: linear-gradient(145deg, var(--navy), #1A2F5E);
+    border-radius: 28px; padding: 48px 40px; color: var(--white);
+    position: relative; overflow: hidden;
+  }
+  .ingredients-card::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,145,42,0.2), transparent);
+  }
+  .ing-card-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+  .nutrition-rows { display: flex; flex-direction: column; gap: 16px; }
+  .nutrition-row { }
+  .nut-label { display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+  .nut-label strong { color: var(--white); }
+  .nut-bar { height: 6px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; }
+  .nut-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); animation: fillBar 1.2s ease-out both; }
+  @keyframes fillBar { from { width: 0 !important; } }
+
+  /* ── HOW TO USE ── */
+  .how-to { background: var(--white); }
+  .how-header { text-align: center; margin-bottom: 56px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; position: relative; }
+  .steps::before {
+    content: ''; position: absolute; top: 44px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    opacity: 0.3;
+  }
+  .step { text-align: center; padding: 32px 20px; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--navy);
+    margin: 0 auto 20px; box-shadow: 0 4px 16px rgba(200,145,42,0.35);
+  }
+  .step-icon { font-size: 28px; margin-bottom: 12px; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+  .step-text { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ── WHY DHAAN ── */
+  .why { background: var(--cream); }
+  .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .why-card {
+    background: var(--white); border-radius: 18px; padding: 24px 20px;
+    border: 1px solid rgba(200,145,42,0.12);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .why-card:hover { box-shadow: 0 6px 24px rgba(200,145,42,0.15); transform: translateY(-3px); }
+  .why-card-icon { font-size: 28px; margin-bottom: 10px; }
+  .why-card-title { font-weight: 700; font-size: 14px; color: var(--navy); margin-bottom: 6px; }
+  .why-card-text { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+  /* ── CTA BAND ── */
+  .cta-band {
+    background: linear-gradient(135deg, var(--gold) 0%, #E8A82A 50%, var(--gold-light) 100%);
+    padding: 70px 5%; text-align: center;
+  }
+  .cta-band h2 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: var(--navy); margin-bottom: 16px; }
+  .cta-band p { font-size: 16px; color: rgba(13,27,62,0.75); margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-dark {
+    background: var(--navy); color: var(--white);
+    padding: 15px 36px; border-radius: 50px;
+    font-weight: 700; font-size: 15px; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(13,27,62,0.3);
+  }
+  .cta-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,27,62,0.4); }
+  .cta-outline {
+    background: transparent; color: var(--navy);
+    padding: 15px 36px; border-radius: 50px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    border: 2px solid var(--navy);
+    transition: background 0.2s;
+  }
+  .cta-outline:hover { background: rgba(13,27,62,0.08); }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--navy); padding: 80px 5%; }
+  .test-header { text-align: center; margin-bottom: 48px; }
+  .test-header .section-title { color: var(--white); }
+  .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .test-card {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(200,145,42,0.15);
+    border-radius: 20px; padding: 28px;
+  }
+  .test-stars { color: var(--gold-light); font-size: 14px; margin-bottom: 12px; }
+  .test-text { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.65; margin-bottom: 18px; font-style: italic; }
+  .test-author { display: flex; align-items: center; gap: 12px; }
+  .test-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 16px;
+  }
+  .test-name { font-weight: 700; color: var(--white); font-size: 14px; }
+  .test-loc { font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #070F22; padding: 60px 5% 32px;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; margin: 16px 0 20px; max-width: 280px; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); text-decoration: none; font-size: 15px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+  .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.5px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-bottom p { font-size: 12px; }
+  .footer-logo-text { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--white); }
+  .footer-logo-sub { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; }
+
+  /* ── PRODUCT HIGHLIGHT SECTION ── */
+  .product-highlight {
+    background: linear-gradient(160deg, #F9F0E0 0%, #FDF6EC 100%);
+    padding: 80px 5%;
+  }
+  .ph-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .ph-card {
+    background: linear-gradient(145deg, var(--navy), #1A2F5E);
+    border-radius: 32px; padding: 52px 44px;
+    color: var(--white); text-align: center;
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(13,27,62,0.35);
+  }
+  .ph-card::after {
+    content: ''; position: absolute; bottom: -40px; left: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,145,42,0.15), transparent);
+  }
+  .ph-badge {
+    display: inline-flex; align-items: center;
+    background: var(--gold); color: var(--navy);
+    padding: 6px 16px; border-radius: 50px;
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px;
+    margin-bottom: 20px;
+  }
+  .ph-product-title { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+  .ph-product-sub { font-size: 13px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 28px; }
+  .ph-big-emoji { font-size: 90px; margin-bottom: 24px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3)); }
+  .ph-price { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--gold-light); line-height: 1; }
+  .ph-price-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+  .ph-buy {
+    display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy); padding: 14px 36px; border-radius: 50px;
+    font-weight: 800; font-size: 15px; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(200,145,42,0.4);
+    transition: transform 0.2s;
+  }
+  .ph-buy:hover { transform: scale(1.04); }
+  .ph-features { }
+  .ph-features .section-title { color: var(--navy); }
+  .feature-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .feature-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--white); border: 1.5px solid rgba(200,145,42,0.25);
+    border-radius: 50px; padding: 10px 18px;
+    font-size: 13px; font-weight: 600; color: var(--navy);
+  }
+  .feature-pill .fp-icon { font-size: 16px; }
+  .ph-text { font-size: 16px; color: var(--text-mid); line-height: 1.7; margin-top: 20px; }
+  .ph-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+  .ph-tag {
+    background: var(--navy); color: rgba(255,255,255,0.8);
+    padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 500;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { flex-direction: column; text-align: center; padding: 100px 5% 60px; }
+    .hero-stats { justify-content: center; }
+    .hero-btns { justify-content: center; }
+    .hero-subtitle { margin-left: auto; margin-right: auto; }
+    .about { grid-template-columns: 1fr; }
+    .ingredients-layout { grid-template-columns: 1fr; }
+    .why-layout { grid-template-columns: 1fr; }
+    .ph-layout { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .steps::before { display: none; }
+  }
+  @media (max-width: 620px) {
+    .nav-links { display: none; }
+    .footer-top { grid-template-columns: 1fr; }
+    .why-cards { grid-template-columns: 1fr; }
+    .hero-stats { gap: 16px; }
+    .trust-bar { gap: 16px; }
+    .trust-divider { display: none; }
+  }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">D</div>
+    <div class="nav-brand">
+      <span>Dhaan Foods</span>
+      <span>Delivering Holistic & Authentic Nutrition</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#how-to">How to Use</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+  </ul>
+  <a href="#buy" class="nav-cta">Buy Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-circle1"></div>
+  <div class="hero-circle2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Quick & Healthy Meal</div>
+    <h1 class="hero-title">Smart <em>Start</em><br/>Health Mix</h1>
+    <p class="hero-subtitle">A perfect blend of 26 natural ingredients crafted to fuel your body with wholesome nutrition — every single morning.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">18g</div>
+        <div class="stat-label">Protein / Serving</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">26</div>
+        <div class="stat-label">Natural Ingredients</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Gluten Free</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="#buy" class="btn-primary">🛒 Order Now</a>
+      <a href="#ingredients" class="btn-secondary">Explore Ingredients →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-product-card">
+      <div class="protein-badge-hero">
+        <span>18g</span>
+        <span>Protein</span>
+      </div>
+      <div class="product-img-wrap">🌾</div>
+      <div class="product-name-hero">Smart Start</div>
+      <div class="product-sub-hero">Health Mix — ஊட்டச்சத்து மாவு</div>
+      <div class="mini-benefits">
+        <span class="mini-pill">✓ High Protein</span>
+        <span class="mini-pill">✓ High Fibre</span>
+        <span class="mini-pill">✓ High Iron</span>
+        <span class="mini-pill">✓ Gluten Free</span>
+        <span class="mini-pill">✓ High Energy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">🌿</span> 100% Natural</div>
+  <div class="trust-divider">|</div>
+  <div class="trust-item"><span class="icon">🚫</span> No Preservatives</div>
+  <div class="trust-divider">|</div>
+  <div class="trust-item"><span class="icon">🌾</span> Gluten Free</div>
+  <div class="trust-divider">|</div>
+  <div class="trust-item"><span class="icon">💪</span> 18g Protein</div>
+  <div class="trust-divider">|</div>
+  <div class="trust-item"><span class="icon">📦</span> Free Delivery ₹499+</div>
+</div>
+
+<!-- ABOUT / STORY -->
+<section class="about" id="about">
+  <div class="about-visual reveal">
+    <div class="about-main-card">
+      <div class="about-emoji">🌾</div>
+      <div class="about-card-title">Rooted in South Indian Tradition</div>
+      <div class="about-card-text">Dhaan Foods believes in the power of ancient grains and seeds — ingredients your grandmother would recognise — now packed for modern, busy lives.</div>
+      <div class="floating-tag top-right">Since 100g ⭐</div>
+      <div class="floating-tag bottom-left">Made in India 🇮🇳</div>
+    </div>
+  </div>
+  <div class="about-text reveal">
+    <span class="section-tag">Our Story</span>
+    <h2 class="section-title">Delivering Holistic &amp; Authentic Nutrition</h2>
+    <p class="section-desc">Dhaan Foods was founded on a simple belief: the best nutrition comes from the land, not from a lab. Smart Start is our flagship health mix — a carefully curated blend of 26 whole grains, legumes, seeds, and nuts.</p>
+    <ul class="about-checklist">
+      <li><div class="check">✓</div> Formulated by nutrition experts with a focus on South Indian dietary tradition</li>
+      <li><div class="check">✓</div> Cold-processed to retain maximum nutrients and natural flavour</li>
+      <li><div class="check">✓</div> Free from artificial colours, flavours, and preservatives</li>
+      <li><div class="check">✓</div> Suitable for children, adults, athletes, and seniors</li>
+      <li><div class="check">✓</div> Sourced from trusted farmers across India</li>
+    </ul>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="benefits">
+  <div class="benefits-header reveal">
+    <span class="section-tag" style="color:var(--gold-light)">Why Smart Start</span>
+    <h2 class="section-title">Everything Your Body Needs,<br/>Every Morning</h2>
+    <p class="section-desc" style="margin:0 auto">Six powerful health pillars in every serving.</p>
+  </div>
+  <div class="benefits-grid reveal">
+    <div class="benefit-card">
+      <div class="benefit-icon">💪</div>
+      <div class="benefit-title">High in Protein</div>
+      <div class="benefit-text">18g of plant-based protein per serving to support muscle repair, growth, and everyday energy needs.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🌿</div>
+      <div class="benefit-title">High in Fibre</div>
+      <div class="benefit-text">Rich dietary fibre promotes healthy digestion, gut microbiome balance, and keeps you fuller for longer.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-title">High in Iron</div>
+      <div class="benefit-text">Natural iron from whole grains and legumes helps combat fatigue and supports healthy blood production.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🚫</div>
+      <div class="benefit-title">Gluten Free</div>
+      <div class="benefit-text">Crafted without gluten-containing grains — safe and nourishing for gluten-sensitive individuals.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🔋</div>
+      <div class="benefit-title">High Energy</div>
+      <div class="benefit-text">Complex carbohydrates from 26 natural sources deliver sustained energy without sugar crashes.</div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🏆</div>
+      <div class="benefit-title">100% Nutrition</div>
+      <div class="benefit-text">A complete meal replacement packed with macro and micronutrients your body craves daily.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INGREDIENTS -->
+<section class="ingredients" id="ingredients">
+  <div class="ingredients-layout">
+    <div class="ingredients-list-wrap reveal">
+      <span class="section-tag">What's Inside</span>
+      <h2 class="section-title" style="color:var(--navy)">26 Natural<br/>Ingredients</h2>
+      <p class="section-desc">Every ingredient is chosen for a purpose — from ancient grains that have nourished generations, to seeds packed with micronutrients.</p>
+      <div class="ing-count">26</div>
+      <div class="ing-grid">
+        <div class="ing-pill"><span class="ing-dot"></span> கேழ்வரகு (Ragi)</div>
+        <div class="ing-pill"><span class="ing-dot"></span> கம்பு (Pearl Millet)</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Urad Dal</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Green Gram</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Black Chana</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Peanuts</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Cashews</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Almonds</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Cardamom</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Flaxseeds</div>
+        <div class="ing-pill"><span class="ing-dot"></span> Quinoa</div>
+        <div class="ing-pill"><span class="ing-dot"></span> + 15 More</div>
+      </div>
+    </div>
+    <div class="ingredients-card reveal">
+      <div class="ing-card-title">Nutritional Highlights (per 100g)</div>
+      <div class="nutrition-rows">
+        <div class="nutrition-row">
+          <div class="nut-label"><span>Protein</span><strong>18g</strong></div>
+          <div class="nut-bar"><div class="nut-fill" style="width:72%"></div></div>
+        </div>
+        <div class="nutrition-row">
+          <div class="nut-label"><span>Dietary Fibre</span><strong>9g</strong></div>
+          <div class="nut-bar"><div class="nut-fill" style="width:55%"></div></div>
+        </div>
+        <div class="nutrition-row">
+          <div class="nut-label"><span>Iron</span><strong>High</strong></div>
+          <div class="nut-bar"><div class="nut-fill" style="width:80%"></div></div>
+        </div>
+        <div class="nutrition-row">
+          <div class="nut-label"><span>Carbohydrates</span><strong>Complex</strong></div>
+          <div class="nut-bar"><div class="nut-fill" style="width:65%"></div></div>
+        </div>
+        <div class="nutrition-row">
+          <div class="nut-label"><span>Natural Energy</span><strong>High</strong></div>
+          <div class="nut-bar"><div class="nut-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:28px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.1)">
+        <div style="font-size:13px; color:rgba(255,255,255,0.5); line-height:1.6">
+          🇮🇳 Sourced from verified Indian farms. Cold-processed. No artificial additives. Tested for quality at every batch.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO USE -->
+<section class="how-to" id="how-to">
+  <div class="how-header reveal">
+    <span class="section-tag">Preparation</span>
+    <h2 class="section-title" style="color:var(--navy)">Ready in Under 5 Minutes</h2>
+    <p class="section-desc" style="margin:0 auto; text-align:center">Three simple steps to your perfect Smart Start meal.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">🥄</div>
+      <div class="step-title">Scoop & Measure</div>
+      <div class="step-text">Take 2–3 tablespoons of Smart Start Health Mix into a bowl or glass.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">🥛</div>
+      <div class="step-title">Mix with Liquid</div>
+      <div class="step-text">Add warm milk, plant milk, or warm water. Stir well until smooth and lump-free.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🍯</div>
+      <div class="step-title">Customise & Enjoy</div>
+      <div class="step-text">Add honey, jaggery, or fruit for extra flavour. Enjoy as porridge, drink, or dosa batter.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-icon">✨</div>
+      <div class="step-title">Feel the Difference</div>
+      <div class="step-text">Consistent daily use brings visible energy, better digestion, and holistic wellbeing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY DHAAN -->
+<section class="why">
+  <div class="why-layout">
+    <div class="reveal">
+      <span class="section-tag">Our Commitment</span>
+      <h2 class="section-title" style="color:var(--navy)">Why Thousands<br/>Trust Dhaan</h2>
+      <p class="section-desc">We don't just sell a product — we deliver a promise. Every pack of Smart Start is crafted with honesty, care, and deep nutritional expertise.</p>
+      <div class="ph-tags" style="margin-top:24px">
+        <span class="ph-tag" style="background:var(--green)">🌿 Vegan Friendly</span>
+        <span class="ph-tag">🚫 No Maida</span>
+        <span class="ph-tag">🌾 Ancient Grains</span>
+        <span class="ph-tag">🇮🇳 Made in India</span>
+      </div>
+    </div>
+    <div class="why-cards reveal">
+      <div class="why-card">
+        <div class="why-card-icon">🔬</div>
+        <div class="why-card-title">Expert Formulated</div>
+        <div class="why-card-text">Developed by nutritionists with deep knowledge of traditional Indian food science.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🌾</div>
+        <div class="why-card-title">Farm Sourced</div>
+        <div class="why-card-text">Ingredients traced directly to Indian farmers — fresh, traceable, and ethical.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">🧪</div>
+        <div class="why-card-title">Quality Tested</div>
+        <div class="why-card-text">Every batch is tested for purity, potency, and safety before it reaches you.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-card-icon">❤️</div>
+        <div class="why-card-title">Family Safe</div>
+        <div class="why-card-text">Safe for all ages — kids, adults, pregnant women, and seniors alike.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT BUY CARD -->
+<section class="product-highlight" id="buy">
+  <div class="ph-layout">
+    <div class="ph-card reveal">
+      <div class="ph-badge">⭐ Best Seller</div>
+      <div class="ph-big-emoji">🌾</div>
+      <div class="ph-product-title">Smart Start</div>
+      <div class="ph-product-sub">Health Mix · ஊட்டச்சத்து மாவு</div>
+      <div class="ph-price">₹349</div>
+      <div class="ph-price-sub">500g Pack · Free Shipping above ₹499</div>
+      <a href="#" class="ph-buy">🛒 Add to Cart</a>
+    </div>
+    <div class="ph-features reveal">
+      <span class="section-tag">What You Get</span>
+      <h2 class="section-title" style="color:var(--navy)">The Smarter Way to Start Your Day</h2>
+      <p class="ph-text">Smart Start is not just a health mix — it's a daily ritual for thousands of Indian families who believe in eating real food. Packed with 26 whole-food ingredients, it delivers 18g of protein, high fibre, and natural iron in every bowl.</p>
+      <div class="feature-pills">
+        <div class="feature-pill"><span class="fp-icon">💪</span> 18g Protein</div>
+        <div class="feature-pill"><span class="fp-icon">🌿</span> High Fibre</div>
+        <div class="feature-pill"><span class="fp-icon">⚡</span> High Iron</div>
+        <div class="feature-pill"><span class="fp-icon">🚫</span> Gluten Free</div>
+        <div class="feature-pill"><span class="fp-icon">🔋</span> High Energy</div>
+        <div class="feature-pill"><span class="fp-icon">🏆</span> 100% Natural</div>
+        <div class="feature-pill"><span class="fp-icon">🌾</span> 26 Ingredients</div>
+        <div class="feature-pill"><span class="fp-icon">🍶</span> No Preservatives</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band reveal">
+  <h2>Start Your Wellness Journey Today</h2>
+  <p>Join thousands of families who have made Smart Start their trusted daily nutrition partner.</p>
+  <div class="cta-buttons">
+    <a href="#buy" class="cta-dark">🛒 Shop Smart Start</a>
+    <a href="#about" class="cta-outline">Learn Our Story</a>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-header reveal">
+    <span class="section-tag" style="color:var(--gold-light)">Customer Love</span>
+    <h2 class="section-title">Real People. Real Results.</h2>
+  </div>
+  <div class="test-grid reveal">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"I've been having Smart Start every morning for 3 months. My energy levels are incredible and I don't feel hungry until lunch. The taste is earthy and wholesome!"</p>
+      <div class="test-author">
+        <div class="test-avatar">P</div>
+        <div><div class="test-name">Priya S.</div><div class="test-loc">Chennai, Tamil Nadu</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"As someone with PCOS, I was looking for clean nutrition. Smart Start has been a game changer — no bloating, great energy, and I know exactly what's in it."</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div><div class="test-name">Anitha R.</div><div class="test-loc">Coimbatore, Tamil Nadu</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"My kids love it mixed with warm milk and a little honey. It's the only health product I've found that the whole family actually looks forward to every morning."</p>
+      <div class="test-author">
+        <div class="test-avatar">M</div>
+        <div><div class="test-name">Meena K.</div><div class="test-loc">Madurai, Tamil Nadu</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-text">Dhaan Foods</div>
+      <span class="footer-logo-sub">Delivering Holistic & Authentic Nutrition</span>
+      <p>We believe in the power of real food — whole grains, seeds, and legumes that have nourished Indian families for centuries.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">f</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Smart Start Health Mix</a></li>
+        <li><a href="#">All Products</a></li>
+        <li><a href="#">Best Sellers</a></li>
+        <li><a href="#">Gift Packs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Wholesale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dhaan Foods. All rights reserved. Made with ❤️ in India.</p>
+    <p style="font-size:12px; color:rgba(255,255,255,0.3)">Smart Start Health Mix · ஊட்டச்சத்து மாவு</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate nutrition bars when visible
+  const bars = document.querySelectorAll('.nut-fill');
+  const barObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.2 });
+  bars.forEach(b => { b.style.animationPlayState = 'paused'; barObs.observe(b); });
+</script>
+</body>
+</html>
